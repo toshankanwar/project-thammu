@@ -111,7 +111,6 @@ export default function PoemSlugPage({ params }) {
 
     let authorName = user.displayName || 'Anonymous';
 
-    // 🔒 Fetch name from Firestore if not present in displayName (e.g., email/password users)
     if (!user.displayName) {
       try {
         const userDoc = await getDocs(
@@ -146,25 +145,25 @@ export default function PoemSlugPage({ params }) {
         ← Back to All Poems
       </Link>
 
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6 w-full">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{poem.title}</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">by {poem.author}</p>
+      <div className="bg-white p-6 rounded-lg shadow-lg mb-6 w-full">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">{poem.title}</h1>
+        <p className="text-sm text-gray-500 mb-2">by {poem.author}</p>
         {poem.datePosted && (
           <p className="text-xs text-gray-400 mb-4">
             Posted on {formatDate(poem.datePosted.seconds * 1000)}
           </p>
         )}
-        <pre className="whitespace-pre-wrap text-lg text-gray-800 dark:text-gray-100 mb-4">
+        <pre className="whitespace-pre-wrap text-lg text-gray-800 mb-4">
           {poem.content}
         </pre>
       </div>
 
-      <div className="mt-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Add a Comment</h2>
+      <div className="mt-8 bg-white p-6 rounded-lg shadow-lg w-full">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Add a Comment</h2>
         {user ? (
           <>
             <textarea
-              className="w-full p-3 border border-gray-300 rounded-md dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
               rows={4}
               placeholder="Write your comment..."
               value={newComment}
@@ -178,12 +177,12 @@ export default function PoemSlugPage({ params }) {
             </button>
           </>
         ) : (
-          <p className="text-gray-500 dark:text-gray-300">Please log in to leave a comment.</p>
+          <p className="text-gray-500">Please log in to leave a comment.</p>
         )}
       </div>
 
-      <div className="mt-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">All Comments</h2>
+      <div className="mt-8 bg-white p-6 rounded-lg shadow-lg w-full">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">All Comments</h2>
         {loading ? (
           <p>Loading comments...</p>
         ) : comments.length === 0 ? (
@@ -191,11 +190,11 @@ export default function PoemSlugPage({ params }) {
         ) : (
           <div className="space-y-4">
             {comments.map((comment) => (
-              <div key={comment.id} className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+              <div key={comment.id} className="bg-gray-100 p-4 rounded-lg shadow-md">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-semibold text-gray-800 dark:text-white">{comment.author}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="font-semibold text-gray-800">{comment.author}</p>
+                    <p className="text-xs text-gray-500">
                       {formatDate(comment.timestamp.seconds * 1000)}
                     </p>
                   </div>
@@ -208,7 +207,7 @@ export default function PoemSlugPage({ params }) {
                     </button>
                   )}
                 </div>
-                <p className="mt-2 text-gray-700 dark:text-gray-200">{comment.content}</p>
+                <p className="mt-2 text-gray-700">{comment.content}</p>
               </div>
             ))}
             {hasMore && (
