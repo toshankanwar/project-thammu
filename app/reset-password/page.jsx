@@ -27,9 +27,9 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-semibold mb-4 text-center text-gray-900 dark:text-white">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-2xl font-semibold mb-4 text-center text-gray-900">
           Reset Your Password
         </h1>
         {message && <p className="text-green-600 mb-2">{message}</p>}
@@ -40,7 +40,7 @@ export default function ResetPasswordPage() {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 p-3 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
 
         <button
@@ -51,7 +51,7 @@ export default function ResetPasswordPage() {
           {loading ? 'Sending...' : 'Send Reset Link'}
         </button>
 
-        <p className="text-sm text-center mt-4 text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-center mt-4 text-gray-600">
           Remember your password?{' '}
           <button
             onClick={() => router.push('/login')}
