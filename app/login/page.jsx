@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { auth, googleProvider } from '../../firebase/firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react'; // Optional: install lucide-react or use heroicons
 
