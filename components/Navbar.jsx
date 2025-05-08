@@ -114,7 +114,7 @@ export default function Navbar() {
                 <div className="relative profile-dropdown">
                   <button onClick={() => setShowMenu((prev) => !prev)} className="focus:outline-none">
                     <img
-                      src={user.photoURL || '/default-profile.png'}
+                      src={user.photoURL || '/assets/profile.png'}
                       alt="Profile"
                       className="w-9 h-9 rounded-full border border-gray-300"
                       title={user.displayName || user.email}

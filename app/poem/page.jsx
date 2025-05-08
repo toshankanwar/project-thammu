@@ -1,44 +1,82 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { db } from '@/firebase/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  startAfter
+} from 'firebase/firestore';
 import Link from 'next/link';
 
 export default function PoemPage() {
   const [poems, setPoems] = useState([]);
   const [sortOption, setSortOption] = useState('date');
+  const [lastVisible, setLastVisible] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchPoems = async () => {
-      const snapshot = await getDocs(collection(db, 'poems'));
-      let fetchedPoems = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-
-      // Sort based on selected option
-      fetchedPoems = sortPoems(fetchedPoems, sortOption);
-      setPoems(fetchedPoems);
-    };
-
-    fetchPoems();
-  }, [sortOption]);
-
-  const sortPoems = (list, option) => {
+  const getOrderField = (option) => {
     switch (option) {
-      case 'views':
-        return [...list].sort((a, b) => (b.views || 0) - (a.views || 0));
-      case 'likes':
-        return [...list].sort((a, b) => (b.likes || 0) - (a.likes || 0));
-      case 'title':
-        return [...list].sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+      case 'views': return 'views';
+      case 'likes': return 'likes';
+      case 'title': return 'title';
       case 'date':
-      default:
-        return [...list].sort((a, b) => new Date(b.datePosted?.toDate()) - new Date(a.datePosted?.toDate()));
+      default: return 'datePosted';
     }
   };
 
-  // Function to get a short preview of the poem
+  const getOrderDirection = (option) => {
+    return option === 'title' ? 'asc' : 'desc';
+  };
+
+  const fetchPoems = async (isInitial = false) => {
+    setLoading(true);
+    const field = getOrderField(sortOption);
+    const direction = getOrderDirection(sortOption);
+
+    let q = query(
+      collection(db, 'poems'),
+      orderBy(field, direction),
+      limit(10)
+    );
+
+    if (!isInitial && lastVisible) {
+      q = query(
+        collection(db, 'poems'),
+        orderBy(field, direction),
+        startAfter(lastVisible),
+        limit(10)
+      );
+    }
+
+    const snapshot = await getDocs(q);
+    const fetchedPoems = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    if (isInitial) {
+      setPoems(fetchedPoems);
+    } else {
+      setPoems(prev => [...prev, ...fetchedPoems]);
+    }
+
+    const last = snapshot.docs[snapshot.docs.length - 1];
+    setLastVisible(last);
+    setHasMore(snapshot.docs.length === 10);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLastVisible(null);
+    setPoems([]);
+    setHasMore(true);
+    fetchPoems(true);
+  }, [sortOption]);
+
   const getPoemPreview = (content) => {
     return content?.length > 100 ? content.slice(0, 100) + "..." : content;
   };
@@ -78,7 +116,7 @@ export default function PoemPage() {
               by <span className="font-medium">{poem.author}</span>
             </p>
             <p className="text-xs text-gray-500 mt-1">
-              Posted on {new Date(poem.datePosted?.toDate()).toLocaleDateString()}
+              Posted on {poem.datePosted?.toDate().toLocaleDateString()}
             </p>
 
             {/* Poem Preview */}
@@ -86,7 +124,6 @@ export default function PoemPage() {
               {getPoemPreview(poem.content)}
             </p>
 
-            {/* Read More Button */}
             <Link href={`/poem/${poem.slug}`}>
               <button className="mt-3 text-sm text-blue-600 hover:underline">
                 Read More
@@ -94,6 +131,19 @@ export default function PoemPage() {
             </Link>
           </div>
         ))}
+
+        {/* Load More */}
+        {hasMore && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => fetchPoems(false)}
+              disabled={loading}
+              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+            >
+              {loading ? 'Loading...' : 'Load More'}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

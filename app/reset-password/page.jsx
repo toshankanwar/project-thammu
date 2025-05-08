@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
 import { useRouter } from 'next/navigation';
 
@@ -12,54 +12,94 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleReset = async () => {
-    setLoading(true);
+  // Simple email format validation
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleReset = async (e) => {
+    e.preventDefault();
     setMessage('');
     setError('');
+
+    if (!isValidEmail(email)) {
+      setError('❌ Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
     try {
       await sendPasswordResetEmail(auth, email);
-      setMessage('Password reset email sent. Please check your inbox.');
+      setMessage('✅ Password reset email sent! Please check your inbox.');
       setEmail('');
     } catch (err) {
-      setError(err.message || 'Failed to send reset email.');
+      if (err.code === 'auth/user-not-found') {
+        setError('❌ No user registered with that email.');
+      } else {
+        setError(err.message || '❌ Failed to send reset email.');
+      }
     }
     setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-semibold mb-4 text-center text-gray-900">
-          Reset Your Password
-        </h1>
-        {message && <p className="text-green-600 mb-2">{message}</p>}
-        {error && <p className="text-red-600 mb-2">{error}</p>}
+    <div className="flex items-center justify-center bg-gray-50 px-4 py-8 md:py-10 h-full">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
 
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 p-3 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
-        />
+        {/* Left: Reset Form */}
+        <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-2">
+              Reset Password 🔐
+            </h1>
+            <p className="text-center text-gray-500 mb-6 text-sm sm:text-base">
+              Enter your email to receive a password reset link.
+            </p>
 
-        <button
-          onClick={handleReset}
-          disabled={loading}
-          className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-        >
-          {loading ? 'Sending...' : 'Send Reset Link'}
-        </button>
+            {message && <p className="text-green-600 text-sm mb-4">{message}</p>}
+            {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
+          </div>
 
-        <p className="text-sm text-center mt-4 text-gray-600">
-          Remember your password?{' '}
-          <button
-            onClick={() => router.push('/login')}
-            className="text-blue-600 hover:underline"
-          >
-            Go to Login
-          </button>
-        </p>
+          <form onSubmit={handleReset} className="space-y-4">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+              required
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
+            >
+              {loading ? 'Sending...' : 'Send Reset Link'}
+            </button>
+          </form>
+
+          <div className="text-center mt-6">
+            <p className="text-sm text-gray-600">
+              Remember your password?{' '}
+              <button
+                onClick={() => router.push('/login')}
+                className="text-blue-600 hover:underline"
+              >
+                Go to Login
+              </button>
+            </p>
+          </div>
+        </div>
+
+        {/* Right: Illustration */}
+        <div className="hidden md:flex w-1/2 items-center justify-center bg-gray-100 p-6">
+          <img
+            src="/assets/reset-password.svg"
+            alt="Reset Illustration"
+            className="max-w-full h-auto"
+          />
+        </div>
       </div>
     </div>
   );
