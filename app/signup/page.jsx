@@ -4,6 +4,8 @@ import { auth, db, googleProvider } from '../../firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -11,6 +13,16 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/');
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
   const handleSignup = async (e) => {
     e.preventDefault();
     try {

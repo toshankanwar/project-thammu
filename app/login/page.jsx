@@ -12,6 +12,14 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/');
+      }
+    });
+    return () => unsubscribe(); // cleanup
+  }, [router]);
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMsg('');
