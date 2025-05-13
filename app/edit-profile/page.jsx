@@ -1,28 +1,39 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { auth, db } from '../../firebase/firebase';
-import { updateProfile, deleteUser } from 'firebase/auth';
+import { updateProfile, deleteUser, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 
 export default function EditProfile() {
-  const user = auth.currentUser;
   const router = useRouter();
+  const [user, setUser] = useState(null);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState(user?.email || '');
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(true);
 
+  // ✅ Check auth state on mount
   useEffect(() => {
-    const fetchName = async () => {
-      if (!user) return;
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (!currentUser) {
+        router.push('/'); // 🔒 Redirect to homepage if not logged in
+        return;
+      }
+
+      setUser(currentUser);
+      setEmail(currentUser.email || '');
+
+      // Fetch user name from Firestore
+      const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
       if (userDoc.exists()) {
         setName(userDoc.data().name || '');
       }
+
       setLoading(false);
-    };
-    fetchName();
-  }, [user]);
+    });
+
+    return () => unsubscribe();
+  }, [router]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
