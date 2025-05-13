@@ -94,8 +94,8 @@ export default function Navbar() {
   <Image
     src="/assets/logo-thammu.png"
     alt="PoemSite Logo"
-    width={90}
-    height={90}
+    width={120}
+    height={120}
     className="object-contain"
     priority
   />
