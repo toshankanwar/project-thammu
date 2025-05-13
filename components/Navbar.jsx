@@ -125,7 +125,15 @@ export default function Navbar() {
                <div className="px-4 py-2 text-sm text-gray-700 font-semibold border-b">
                  {user.displayName || user.email}
                </div>
-             
+               <button
+        onClick={() => router.push('/edit-profile')}
+        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5h2m-1 1v2m3.6 2.4L14 10l-7 7-3 1 1-3 7-7 1.4 1.4z" />
+        </svg>
+        Edit Profile
+      </button>
                <button
                  onClick={() => router.push('/reset-password')}
                  className="w-full text-left px-4 py-2 text-sm text-blue-600 hover:bg-blue-50 flex items-center gap-2"

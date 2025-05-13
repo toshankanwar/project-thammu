@@ -111,17 +111,25 @@ export default function PoemSlugPage({ params }) {
 
     let authorName = user.displayName || 'Anonymous';
 
-    if (!user.displayName) {
+    if (user) {
       try {
-        const userDoc = await getDocs(
-          query(collection(db, 'users'), where('uid', '==', user.uid))
-        );
-        if (!userDoc.empty) {
-          const userData = userDoc.docs[0].data();
-          authorName = userData.name || 'Anonymous';
+        const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+        const snapshot = await getDocs(q);
+    
+        if (!snapshot.empty) {
+          const userData = snapshot.docs[0].data();
+    
+          // Show updated name, or registered name, or fallback
+          if (userData.name && userData.name.trim() !== '') {
+            authorName = userData.name;
+          } else if (user.displayName && user.displayName.trim() !== '') {
+            authorName = user.displayName;
+          } else {
+            authorName = 'Anonymous';
+          }
         }
       } catch (error) {
-        console.error('Error fetching user name:', error);
+        console.error('Error fetching user data from Firestore:', error);
       }
     }
 
