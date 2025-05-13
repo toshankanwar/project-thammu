@@ -6,7 +6,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { app } from '@/firebase/firebase';
 import { useRouter } from 'next/navigation';
-
+import Image from 'next/image';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -90,7 +90,18 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto px-4 lg:px-10">
           <div className="flex justify-between items-center py-3">
             <div className="flex items-center space-x-10">
-              <Link href="/" className="text-2xl font-bold text-gray-900">PoemSite</Link>
+            <Link href="/" className="flex items-center">
+  <Image
+    src="/assets/logo-thammu.png"
+    alt="PoemSite Logo"
+    width={90}
+    height={90}
+    className="object-contain"
+    priority
+  />
+</Link>
+
+
               <div className="hidden md:flex space-x-8 text-[16.5px] font-medium">
                 <Link href="/" className="hover:text-gray-600">Home</Link>
                 <Link href="/about" className="hover:text-gray-600">About</Link>
