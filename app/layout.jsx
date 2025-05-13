@@ -9,8 +9,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <title>PoemSite</title> {/* Add the title here */}
-        <meta name="description" content="A beautiful poetry collection." /> {/* Add description meta tag */}
+        <meta name="description" content="A beautiful poetry collection." /> 
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-xxxx"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />{/* Add description meta tag */}
       </Head>
+ 
       <body className="bg-white text-gray-900">
         <AuthProvider>
           <Navbar />
