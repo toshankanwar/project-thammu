@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap');
 @import "tailwindcss";
+/* globals.css or in _app.js if using CSS modules */
+
 
 :root {
   --background: #ffffff;

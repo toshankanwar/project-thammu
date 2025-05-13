@@ -12,6 +12,10 @@ module.exports = {
         'dark-bg': '#181818',
         'light-bg': '#fafafa',
       },
+      fontFamily: {
+        display: ['"Playfair Display"', 'serif'],
+        body: ['"Inter"', 'sans-serif'],
+      },
     },
   },
   plugins: [],
