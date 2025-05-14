@@ -27,7 +27,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div className="flex justify-center md:justify-start">
             <img
-              src="/assets/about-photo.png"
+              src="/assets/photo-about.jpg"
               alt="Poet Image"
               className="w-52 h-52 sm:w-60 sm:h-60 rounded-full object-cover shadow-md border-2 border-indigo-200"
             />
