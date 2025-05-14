@@ -63,10 +63,10 @@ export default function Home() {
   {/* Content */}
   <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
-      Welcome to Thaneshwar’s World
+      Welcome to Thaneshwars World
     </h1>
     <p className="text-lg md:text-xl text-gray-200 max-w-2xl mb-10 drop-shadow">
-      Discover poems born from the soul—crafted through love, emotion, and life's reflections.
+      Discover poems born from the soul—crafted through love, emotion, and lifes reflections.
     </p>
     <div className="flex flex-wrap gap-4 justify-center">
       <Link
@@ -164,7 +164,7 @@ export default function Home() {
       Subscribe to Our Newsletter
     </h2>
     <p className="text-lg text-white mb-8">
-      Stay updated with the latest poems and articles directly in your inbox. Never miss out on new content!
+      Stay updated with the latest poems and articles directly in your inbox. Never miss out on new content
     </p>
     <form action="#" className="flex flex-col items-center">
     <input
@@ -218,7 +218,7 @@ export default function Home() {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
     <div className="bg-white p-8 rounded-xl shadow-xl">
       <p className="text-lg text-gray-800 mb-4">
-        "The poems here truly resonate with my emotions. Each piece feels personal, as though the poet is speaking directly to me."
+        The poems here truly resonate with my emotions. Each piece feels personal, as though the poet is speaking directly to me.
       </p>
       <div className="flex items-center">
 
@@ -231,7 +231,7 @@ export default function Home() {
 
     <div className="bg-white p-8 rounded-xl shadow-xl">
       <p className="text-lg text-gray-800 mb-4">
-        "The poetry here is a reflection of the soul. It’s rare to find writing that captures the essence of feelings so perfectly."
+        The poetry here is a reflection of the soul. It’s rare to find writing that captures the essence of feelings so perfectly.
       </p>
       <div className="flex items-center">
    
@@ -244,7 +244,7 @@ export default function Home() {
 
     <div className="bg-white p-8 rounded-xl shadow-xl">
       <p className="text-lg text-gray-800 mb-4">
-        "I always find comfort in the words here. The way the poet expresses vulnerability and strength is truly inspiring."
+        I always find comfort in the words here. The way the poet expresses vulnerability and strength is truly inspiring.
       </p>
       <div className="flex items-center">
        
