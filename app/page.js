@@ -216,7 +216,7 @@ export default function Home() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-12 animate-3d-subtitle">
-              Discover poems born from the soul—crafted through love, emotion, and life's reflections.
+              Discover poems born from the soul—crafted through love, emotion, and lifes reflections.
             </p>
             
             <div className="flex flex-wrap gap-6 justify-center">
