@@ -408,7 +408,7 @@ export default function Home() {
                     </svg>
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-5 italic">"{testimonial.quote}"</p>
+                  <p className="text-gray-600 text-sm mb-5 italic">{testimonial.quote}</p>
                   
                   <div className="flex items-center mt-auto">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r ${testimonial.color} text-white font-bold`}>
