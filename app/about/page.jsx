@@ -4,8 +4,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-8 lg:px-20 font-sans">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-6 sm:p-10 transition-all animate-fade-in-up">
+<div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-8 lg:px-20 font-sans">
+  <div className="group max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-6 sm:p-10 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(59,130,246,0.35)] animate-fade-in-up">
+
 
         {/* Header */}
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6 tracking-wide">
@@ -16,7 +17,7 @@ export default function About() {
         </p>
 
         {/* Poet's Reflection */}
-        <div className="bg-gray-50 rounded-lg py-4 px-6 mb-10 shadow-sm text-center">
+        <div className="bg-gray-50 rounded-lg py-4 px-6 mb-10 shadow-sm text-center transform transition duration-300 hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(59,130,246,0.4)]">
           <p className="text-lg text-gray-800 font-medium mb-2">A few words from the poet...</p>
           <p className="text-base italic text-gray-500 max-w-xl mx-auto leading-relaxed">
             "Poetry is not just a form of writing, it's a way of feeling. Every verse carries a piece of my soul, a moment in time I wanted to share with you. I hope my words resonate with you."

@@ -54,8 +54,8 @@ export default function Contact() {
         {/* Web3Forms Contact Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-lg rounded-lg p-8 space-y-6"
-        >
+          className="bg-white shadow-lg rounded-lg p-8 space-y-6 transform transition duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(59,130,246,0.7)] hover:ring-2 hover:ring-blue-400">
+        
           {/* Required Web3Forms Access Key */}
           <input type="hidden" name="access_key" value="3246c9e3-95e7-454b-aecc-70c3488a3297" />
 
