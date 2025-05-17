@@ -36,8 +36,8 @@ export default function SubmitPoemRequestPage() {
       await addDoc(collection(db, "poemRequests"), {
         title,
         content,
-        userName: name,        // ✅ use `name` correctly
-        userId: user.uid,       // ✅ use current user's ID
+        userName: name,    
+        userId: user.uid,       
         timestamp: serverTimestamp(),
         status: "pending",
       });
@@ -56,32 +56,61 @@ export default function SubmitPoemRequestPage() {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Submit Your Poem</h1>
-      <input
-        type="text"
-        placeholder="Your Name"
-        className="w-full border p-2 mb-3"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Poem Title"
-        className="w-full border p-2 mb-3"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Poem Content"
-        className="w-full border p-2 mb-3 h-40"
-        value={content}
-        onChange={e => setContent(e.target.value)}
-      />
-      <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded">
-        Submit Request
-      </button>
-      {message && <p className="mt-3 text-sm text-green-600">{message}</p>}
+    <div className="max-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-xl mx-auto bg-white rounded-lg shadow-lg p-6 sm:p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          Submit Your Poem
+        </h1>
+        
+        <div className="space-y-4">
+          <div className="transition-all duration-200 hover:transform hover:-translate-y-0.5">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-200"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </div>
+
+          <div className="transition-all duration-200 hover:transform hover:-translate-y-0.5">
+            <input
+              type="text"
+              placeholder="Poem Title"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-200"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value.toLowerCase());
+              }}
+            />
+          </div>
+
+          <div className="transition-all duration-200 hover:transform hover:-translate-y-0.5">
+            <textarea
+              placeholder="Poem Content"
+              className="w-full border border-gray-300 rounded-lg p-3 h-48 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-200 resize-none"
+              value={content}
+              onChange={e => setContent(e.target.value)}
+            />
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold 
+                     transform transition-all duration-200 
+                     hover:-translate-y-1 hover:bg-blue-600 hover:shadow-lg 
+                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Submit Poem
+          </button>
+
+          {message && (
+            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-green-600 text-center">{message}</p>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
