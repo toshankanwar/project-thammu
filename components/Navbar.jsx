@@ -100,14 +100,28 @@ export default function Navbar() {
     priority
   />
 </Link>
+<div className="hidden md:flex space-x-8 text-[16.5px] font-medium">
+  <Link href="/" className="group relative text-gray-800 hover:text-blue-600 transition-colors duration-200">
+    <span>Home</span>
+    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+  <Link href="/about" className="group relative text-gray-800 hover:text-blue-600 transition-colors duration-200">
+    <span>About</span>
+    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+  <Link href="/contact" className="group relative text-gray-800 hover:text-blue-600 transition-colors duration-200">
+    <span>Contact</span>
+    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+  <Link href="/poem" className="group relative text-gray-800 hover:text-blue-600 transition-colors duration-200">
+    <span>Poems</span>
+    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+</div>
 
 
-              <div className="hidden md:flex space-x-8 text-[16.5px] font-medium">
-                <Link href="/" className="hover:text-gray-600">Home</Link>
-                <Link href="/about" className="hover:text-gray-600">About</Link>
-                <Link href="/contact" className="hover:text-gray-600">Contact</Link>
-                <Link href="/poem" className="hover:text-gray-600">Poems</Link>
-              </div>
+
+
             </div>
 
             <div className="flex items-center gap-3">

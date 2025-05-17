@@ -102,49 +102,50 @@ export default function PoemPage() {
 
       {/* Poems */}
       <div className="mt-32 md:mt-16 space-y-6 px-4">
-        {poems.map(poem => (
-          <div
-            key={poem.id}
-            className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-200 p-5 bg-white"
-          >
-            <Link href={`/poem/${poem.slug}`}>
-              <h2 className="text-xl font-semibold text-gray-900 hover:underline mb-1">
-                {poem.title}
-              </h2>
-            </Link>
-            <p className="text-sm text-gray-600">
-              by <span className="font-medium">{poem.author}</span>
-            </p>
-            <p className="text-xs text-gray-500 mt-1">
-              Posted on {poem.datePosted?.toDate().toLocaleDateString()}
-            </p>
+  {poems.map(poem => (
+    <div
+      key={poem.id}
+      className="border border-gray-200 rounded-lg shadow-sm hover:shadow-lg hover:shadow-blue-500 hover:translate-y-2 transition-all duration-300 p-5 bg-white"
+    >
+      <Link href={`/poem/${poem.slug}`}>
+        <h2 className="text-xl font-semibold text-gray-900 hover:underline mb-1">
+          {poem.title}
+        </h2>
+      </Link>
+      <p className="text-sm text-gray-600">
+        by <span className="font-medium">{poem.author}</span>
+      </p>
+      <p className="text-xs text-gray-500 mt-1">
+        Posted on {poem.datePosted?.toDate().toLocaleDateString()}
+      </p>
 
-            {/* Poem Preview */}
-            <p className="text-sm text-gray-700 mt-2">
-              {getPoemPreview(poem.content)}
-            </p>
+      {/* Poem Preview */}
+      <p className="text-sm text-gray-700 mt-2">
+        {getPoemPreview(poem.content)}
+      </p>
 
-            <Link href={`/poem/${poem.slug}`}>
-              <button className="mt-3 text-sm text-blue-600 hover:underline">
-                Read More
-              </button>
-            </Link>
-          </div>
-        ))}
+      <Link href={`/poem/${poem.slug}`}>
+        <button className="mt-3 text-sm text-blue-600 hover:underline">
+          Read More
+        </button>
+      </Link>
+    </div>
+  ))}
 
-        {/* Load More */}
-        {hasMore && (
-          <div className="text-center mt-6">
-            <button
-              onClick={() => fetchPoems(false)}
-              disabled={loading}
-              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-            >
-              {loading ? 'Loading...' : 'Load More'}
-            </button>
-          </div>
-        )}
-      </div>
+  {/* Load More */}
+  {hasMore && (
+    <div className="text-center mt-6">
+      <button
+        onClick={() => fetchPoems(false)}
+        disabled={loading}
+        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+      >
+        {loading ? 'Loading...' : 'Load More'}
+      </button>
+    </div>
+  )}
+</div>
+
     </div>
   );
 }

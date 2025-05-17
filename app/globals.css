@@ -6,6 +6,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: 'Poppins', sans-serif;
 }
 
 /* Always apply light theme */
@@ -20,7 +21,7 @@
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* You can add additional styles for other components as needed */
@@ -30,9 +31,6 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: 'Poppins', sans-serif;
-}
 
 body {
   font-family: var(--font-sans);
