@@ -136,7 +136,7 @@ export default function Home() {
   className="relative w-full px-6 py-20 md:px-12 lg:px-20 bg-gray-200 overflow-hidden shadow-lg"
 >
   <h2
-    className={`text-3xl md:text-4xl font-semibold text-center text-black mb-16 tracking-tight ${
+    className={`text-4xl md:text-5xl font-bold text-center text-black mb-16 tracking-tight ${
       isInView ? 'animate__animated animate__fadeIn animate__delay-0.1s' : ''
     }`}
   >
@@ -155,7 +155,7 @@ export default function Home() {
           href={`/poem/${poem.slug}`}
           className="min-w-[280px] md:min-w-[320px] lg:min-w-[360px] max-w-xs bg-gray-100 rounded-2xl shadow-lg p-8 mx-4 transition-all duration-300 transform hover:translate-y-[-10px] hover:shadow-[0px_8px_25px_2px_rgba(0,123,255,0.5)] hover:bg-blue-50 animate__animated animate__fadeIn animate__delay-2s"
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-black mb-4 truncate">{poem.title}</h3>
+          <h3 className="text-xl md:text-2xl font-bold text-black mb-4 truncate">{poem.title}</h3>
           <p className="text-base md:text-lg text-gray-700 line-clamp-5">{poem.content}</p>
         </Link>
       ))}
@@ -180,7 +180,7 @@ export default function Home() {
 
 {/* FAQ Section */}
 <section className="w-full px-6 py-20 md:px-12 lg:px-20 bg-gray-200">
-  <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-12 text-center animate__animated animate__fadeIn animate__delay-0.4s">
+  <h2 className="text-4xl md:text-5xl font-bold text-black mb-12 text-center animate__animated animate__fadeIn animate__delay-0.4s">
     Frequently Asked Questions
   </h2>
 
@@ -191,7 +191,7 @@ export default function Home() {
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleAnswer(index)}
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-black">{faq.question}</h3>
+          <h3 className="text-xl md:text-2xl font-medium text-black">{faq.question}</h3>
           <button className="text-blue-700 text-2xl">
             {openIndex === index ? <FiChevronUp /> : <FiChevronDown />}
           </button>
@@ -213,7 +213,7 @@ export default function Home() {
   className="relative w-full px-6 py-20 md:px-12 lg:px-20 bg-gray-200 overflow-hidden"
 >
   <h2
-    className={`text-4xl md:text-5xl font-semibold text-center text-black mb-16 tracking-tight ${
+    className={`text-4xl md:text-5xl font-bold text-center text-black mb-16 tracking-tight ${
       isInView ? 'animate__animated animate__fadeIn animate__fast' : ''
     }`}
   >
@@ -233,7 +233,7 @@ export default function Home() {
         </p>
         <div className="flex items-center">
           <div>
-            <p className="font-semibold text-gray-900">{name}</p>
+            <p className="font-medium text-gray-900">{name}</p>
             <p className="text-sm text-gray-600">Poetry Enthusiast</p>
           </div>
         </div>
@@ -241,6 +241,7 @@ export default function Home() {
     ))}
   </div>
 </section>
+
 
 
 
