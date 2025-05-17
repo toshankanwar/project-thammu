@@ -230,12 +230,12 @@ export default function Home() {
               </Link>
 
               <Link
-                href="/about"
+                href="/submit-poem-request"
                 className="flex items-center gap-3 bg-white/90 text-blue-700 hover:bg-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-500 shadow-lg hover:shadow-2xl hover:scale-105 transform-gpu animate-3d-button"
                 style={{ animationDelay: '0.2s' }}
               >
                 <FiUser className="text-xl" />
-                <span>About the Poet</span>
+                <span>Submit Poem Request to Post</span>
               </Link>
             </div>
           </div>
