@@ -148,87 +148,139 @@ export default function PoemSlugPage({ params }) {
   if (!poem) return <p className="pt-20 px-4">Loading...</p>;
 
   return (
-    <div className="pt-0 px-4 sm:px-6 lg:px-8 w-full">
-      <Link href="/poem" className="text-blue-600 hover:underline text-sm mb-4 inline-block">
-        ← Back to All Poems
-      </Link>
+    <div className="pt-0 px-4 sm:px-6 lg:px-8 w-full font-['Inter']">
+    <Link 
+      href="/poem" 
+      className="text-blue-700 hover:text-blue-900 transition-all duration-300 
+                 text-sm mb-4 inline-flex items-center gap-2 
+                 hover:shadow-[0_0_35px_rgba(29,78,216,0.65)] 
+                 bg-white/50 backdrop-blur-sm
+                 rounded-md px-4 py-2 font-medium
+                 hover:bg-white/80"
+    >
+      <span className="transform transition-transform duration-300 group-hover:-translate-x-1">←</span> 
+      Back to All Poems
+    </Link>
 
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6 w-full">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{poem.title}</h1>
-        <p className="text-sm text-gray-500 mb-2">by {poem.author}</p>
+    <div className="bg-white p-8 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] mb-6 w-full 
+                  hover:shadow-[0_8px_40px_rgba(29,78,216,0.45),0_0_80px_rgba(29,78,216,0.25)] 
+                  transition-all duration-500 ease-out
+                  hover:translate-y-[-2px]">
+      <h1 className="text-4xl font-bold text-gray-900 mb-3 font-['Merriweather']">{poem.title}</h1>
+        <p className="text-sm text-gray-600 mb-2 font-medium">by {poem.author}</p>
         {poem.datePosted && (
-          <p className="text-xs text-gray-400 mb-4">
+          <p className="text-xs text-gray-500 mb-6">
             Posted on {formatDate(poem.datePosted.seconds * 1000)}
           </p>
         )}
-        <pre className="whitespace-pre-wrap text-lg text-gray-800 mb-4">
+        <pre className="whitespace-pre-wrap text-lg text-gray-800 mb-4 font-['Merriweather'] leading-relaxed">
           {poem.content}
         </pre>
       </div>
 
-      <div className="mt-8 bg-white p-6 rounded-lg shadow-lg w-full">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">Add a Comment</h2>
-        {user ? (
-          <>
-            <textarea
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-              rows={4}
-              placeholder="Write your comment..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <button
-              onClick={handleCommentSubmit}
-              className="mt-2 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            >
-              Post Comment
-            </button>
-          </>
-        ) : (
-          <p className="text-gray-500">Please log in to leave a comment.</p>
-        )}
-      </div>
-
-      <div className="mt-8 bg-white p-6 rounded-lg shadow-lg w-full">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">All Comments</h2>
-        {loading ? (
-          <p>Loading comments...</p>
-        ) : comments.length === 0 ? (
-          <p>No comments yet. Be the first to comment!</p>
-        ) : (
-          <div className="space-y-4">
-            {comments.map((comment) => (
-              <div key={comment.id} className="bg-gray-100 p-4 rounded-lg shadow-md">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-semibold text-gray-800">{comment.author}</p>
-                    <p className="text-xs text-gray-500">
-                      {formatDate(comment.timestamp.seconds * 1000)}
-                    </p>
-                  </div>
-                  {user?.uid === comment.userId && (
-                    <button
-                      onClick={() => handleDeleteComment(comment.id)}
-                      className="text-red-600 hover:underline text-sm ml-4"
-                    >
-                      Delete
-                    </button>
-                  )}
-                </div>
-                <p className="mt-2 text-gray-700">{comment.content}</p>
-              </div>
-            ))}
-            {hasMore && (
-              <button
-                onClick={loadMoreComments}
-                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              >
-                Load More Comments
-              </button>
-            )}
-          </div>
-        )}
-      </div>
+      <div className="mt-8 bg-white p-8 rounded-xl 
+                  shadow-[0_4px_12px_rgba(0,0,0,0.1)] w-full 
+                  hover:shadow-[0_8px_40px_rgba(29,78,216,0.45),0_0_80px_rgba(29,78,216,0.25)] 
+                  transition-all duration-500 ease-out
+                  hover:translate-y-[-2px]">
+      <h2 className="text-2xl font-bold text-gray-900 mb-4 font-['Merriweather']">Add a Comment</h2>
+      {user ? (
+        <>
+          <textarea
+            className="w-full p-4 border border-gray-300 rounded-lg
+                     focus:outline-none focus:ring-2 focus:ring-blue-600 
+                     focus:shadow-[0_0_35px_rgba(29,78,216,0.4)]
+                     hover:shadow-[0_4px_20px_rgba(29,78,216,0.25)]
+                     transition-all duration-300 text-gray-700 font-medium"
+            rows={4}
+            placeholder="Write your comment..."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button
+            onClick={handleCommentSubmit}
+            className="mt-3 px-8 py-3 bg-blue-600 text-white rounded-lg
+                     font-semibold tracking-wide
+                     hover:bg-blue-700 
+                     hover:shadow-[0_0_40px_rgba(29,78,216,0.8),0_0_120px_rgba(29,78,216,0.4)] 
+                     active:shadow-[0_0_20px_rgba(29,78,216,0.9)]
+                     transform hover:-translate-y-1 active:translate-y-0
+                     transition-all duration-300 ease-out
+                     focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2
+                     disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!newComment.trim()}
+          >
+            Post Comment
+          </button>
+        </>
+      ) : (
+        <p className="text-gray-600 font-medium">Please log in to leave a comment.</p>
+      )}
     </div>
-  );
-}
+
+    <div className="mt-8 bg-white p-8 rounded-xl 
+                  shadow-[0_4px_12px_rgba(0,0,0,0.1)] w-full 
+                  hover:shadow-[0_8px_40px_rgba(29,78,216,0.45),0_0_80px_rgba(29,78,216,0.25)] 
+                  transition-all duration-500 ease-out
+                  hover:translate-y-[-2px]">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 font-['Merriweather']">All Comments</h2>
+      {loading ? (
+        <p className="text-gray-600 font-medium">Loading comments...</p>
+      ) : comments.length === 0 ? (
+        <p className="text-gray-600 font-medium">No comments yet. Be the first to comment!</p>
+      ) : (
+        <div className="space-y-6">
+          {comments.map((comment) => (
+        <div 
+        key={comment.id} 
+        className="bg-gray-50 p-6 rounded-lg
+                 shadow-[0_2px_8px_rgba(0,0,0,0.05)]
+                 hover:shadow-[0_8px_25px_rgba(29,78,216,0.25)]
+                 transform hover:-translate-y-1
+                 transition-all duration-300 ease-out"
+      >
+        <div className="flex justify-between items-center">
+          <div>
+            <p className="font-semibold text-gray-900">{comment.author}</p>
+            <p className="text-xs text-gray-500 mt-1">
+              {formatDate(comment.timestamp.seconds * 1000)}
+            </p>
+          </div>
+          {user?.uid === comment.userId && (
+            <button
+              onClick={() => handleDeleteComment(comment.id)}
+              className="text-red-600 hover:text-red-800
+                       px-4 py-2 rounded-lg font-medium
+                       hover:bg-red-50
+                       hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]
+                       transform hover:-translate-y-0.5
+                       transition-all duration-300 ease-out"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <p className="mt-3 text-gray-700 leading-relaxed">{comment.content}</p>
+      </div>
+          ))}
+          {hasMore && (
+            <button
+              onClick={loadMoreComments}
+              className="mt-6 px-8 py-3 bg-blue-600 text-white rounded-lg
+                       font-semibold tracking-wide w-full sm:w-auto
+                       hover:bg-blue-700 
+                       hover:shadow-[0_0_40px_rgba(29,78,216,0.8),0_0_120px_rgba(29,78,216,0.4)]
+                       active:shadow-[0_0_20px_rgba(29,78,216,0.9)]
+                       transform hover:-translate-y-1 active:translate-y-0
+                       transition-all duration-300 ease-out
+                       focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+            >
+              Load More Comments
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+);
+          }

@@ -13,29 +13,26 @@ import Link from 'next/link';
 
 export default function PoemPage() {
   const [poems, setPoems] = useState([]);
-  const [sortOption, setSortOption] = useState('date');
+  const [sortOption, setSortOption] = useState('newest');
   const [lastVisible, setLastVisible] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const getOrderField = (option) => {
+  const getOrderConfig = (option) => {
     switch (option) {
-      case 'views': return 'views';
-      case 'likes': return 'likes';
-      case 'title': return 'title';
-      case 'date':
-      default: return 'datePosted';
+      case 'oldest':
+        return { field: 'datePosted', direction: 'asc' };
+      case 'alphabetical':
+        return { field: 'title', direction: 'asc' };
+      case 'newest':
+      default:
+        return { field: 'datePosted', direction: 'desc' };
     }
-  };
-
-  const getOrderDirection = (option) => {
-    return option === 'title' ? 'asc' : 'desc';
   };
 
   const fetchPoems = async (isInitial = false) => {
     setLoading(true);
-    const field = getOrderField(sortOption);
-    const direction = getOrderDirection(sortOption);
+    const { field, direction } = getOrderConfig(sortOption);
 
     let q = query(
       collection(db, 'poems'),
@@ -81,6 +78,7 @@ export default function PoemPage() {
     return content?.length > 100 ? content.slice(0, 100) + "..." : content;
   };
 
+
   return (
     <div className="pt-0 md:pl-0 max-w-5xl mx-auto">
       {/* Sorting Bar */}
@@ -88,15 +86,18 @@ export default function PoemPage() {
         <div className="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center text-sm font-medium">
           <span className="text-gray-700">Sort By:</span>
           <select
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-          >
-            <option value="date">Newest</option>
-            <option value="views">Most Viewed</option>
-            <option value="likes">Most Liked</option>
-            <option value="title">A-Z Title</option>
-          </select>
+        value={sortOption}
+        onChange={(e) => setSortOption(e.target.value)}
+        className="border border-gray-300 rounded-lg px-4 py-2 text-sm
+                 focus:outline-none focus:ring-2 focus:ring-blue-600 
+                 hover:border-blue-400 transition-all duration-300
+                 bg-white shadow-sm hover:shadow-[0_2px_15px_rgba(29,78,216,0.15)]
+                 cursor-pointer font-medium text-gray-700"
+      >
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="alphabetical">A-Z Title</option>
+      </select>
         </div>
       </div>
 
