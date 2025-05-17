@@ -108,7 +108,7 @@ export default function Home() {
             Welcome to Thaneshwars World
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mb-10 drop-shadow">
-            Discover poems born from the soul—crafted through love, emotion, and life's reflections.
+            Discover poems born from the soul—crafted through love, emotion, and lifes reflections.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
           <Link
