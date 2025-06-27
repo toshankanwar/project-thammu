@@ -48,19 +48,19 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: 'Sarah T.',
+      name: 'Poshan Kanwar.',
       role: 'Poetry Enthusiast',
       quote: 'The poems here truly resonate with my emotions. Each piece feels personal, as though the poet is speaking directly to me.',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      name: 'John M.',
+      name: 'Himanshu Sahu.',
       role: 'Literature Professor',
       quote: 'This collection offers a fresh perspective on contemporary poetry. The depth of emotions captured here is remarkable.',
       color: 'from-blue-400 to-blue-500'
     },
     {
-      name: 'Emily R.',
+      name: 'Prithvi Diwan.',
       role: 'Aspiring Writer',
       quote: 'Finding this treasure trove of poetic expression has been inspirational for my own writing journey.',
       color: 'from-blue-600 to-blue-700'

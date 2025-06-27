@@ -11,7 +11,7 @@ import { Eye, EyeOff } from "lucide-react";
 async function sendWelcomeEmail({ email, name }) {
   // You should replace this endpoint with your actual backend API route for sending emails
   try {
-    await fetch("http://localhost:5001/api/send-welcome-email", {
+    await fetch("https://mail-server-poetry-website.onrender.com/api/send-welcome-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
