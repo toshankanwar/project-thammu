@@ -184,6 +184,7 @@ export default function Home() {
         }
       `}</style>
       
+      
       {/* Enhanced Hero Section with 3D effects */}
       <section 
         className="relative w-full h-screen flex items-center bg-cover bg-center overflow-hidden"
@@ -207,7 +208,30 @@ export default function Home() {
             >
               ✨ Explore the Soul of Poetry ✨
             </div>
-            
+            <div className="flex flex-col items-center mb-8">
+ 
+  <a
+    href="https://poems.toshankanwar.website/everything-about-project"
+    target="_blank"
+    rel="noopener"
+    className="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 group"
+  >
+    <span className="animate-bounce">
+      <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.3" viewBox="0 0 24 24" className="text-yellow-200">
+        <path d="M12 4v14M12 18l-7-7M12 18l7-7" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </span>
+    <span>
+      Want to know <span className="underline underline-offset-2">everything</span> about the project?
+    </span>
+    <span className="animate-spin-slow">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="text-pink-200 ml-1">
+        <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" strokeDasharray="8 4" />
+      </svg>
+    </span>
+  </a>
+
+</div>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Welcome to{' '}
               <span className="animate-3d-title inline-block gradient-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">

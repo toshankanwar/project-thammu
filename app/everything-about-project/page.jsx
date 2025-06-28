@@ -1,32 +1,57 @@
 'use client';
 
+import { useRef } from 'react';
 import Link from 'next/link';
 
 export default function AboutPage() {
+  // Smooth scroll handler for Table of Contents links
+  const sectionRefs = {
+    techstack: useRef(null),
+    pages: useRef(null),
+    mainfeatures: useRef(null),
+    code: useRef(null),
+    security: useRef(null),
+    data: useRef(null),
+    admin: useRef(null),
+    mailserver: useRef(null),
+    deployment: useRef(null),
+  };
+
+  // Helper to scroll smoothly to a section
+  const handleTocClick = (id, e) => {
+    e.preventDefault();
+    const ref = sectionRefs[id];
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Optionally update hash in the URL
+      window.history.replaceState(null, '', `#${id}`);
+    }
+  };
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12 font-sans text-gray-800">
+    <div className="max-w-5xl mx-auto px-2 sm:px-4 py-8 sm:py-12 font-sans text-gray-800">
       {/* Hero */}
-      <div className="flex flex-col items-center mb-14">
-        <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-600 to-pink-500 mb-4 tracking-tight drop-shadow-lg animate-fadein">
+      <div className="flex flex-col items-center mb-10 sm:mb-14">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-600 to-pink-500 mb-3 sm:mb-4 tracking-tight drop-shadow-lg animate-fadein text-center">
           About <span className="underline decoration-pink-400 decoration-3">PoemSite</span>
         </h1>
-        <p className="text-lg md:text-2xl text-center max-w-2xl mb-6 text-gray-700 animate-fadein">
+        <p className="text-base sm:text-lg md:text-2xl text-center max-w-2xl mb-5 sm:mb-6 text-gray-700 animate-fadein">
           <span className="font-bold text-blue-700">PoemSite</span> is a modern, full-stack poetry platform for reading, sharing, and discussing poems — with an elegant user interface, robust admin dashboard, and secure backend.
         </p>
-        <div className="flex flex-wrap gap-4 mt-3">
-          <a href="https://github.com/toshankanwar/poetry-website" target="_blank" rel="noopener" className="bg-white border-2 border-blue-500 text-blue-700 px-5 py-2 rounded-lg font-semibold shadow-lg hover:bg-blue-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 animate-popin">
+        <div className="flex flex-col xs:flex-row flex-wrap gap-3 sm:gap-4 mt-2 sm:mt-3 items-center justify-center w-full">
+          <a href="https://github.com/toshankanwar/poetry-website" target="_blank" rel="noopener" className="w-full xs:w-auto bg-white border-2 border-blue-500 text-blue-700 px-4 py-2 rounded-lg font-semibold shadow-lg hover:bg-blue-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 justify-center animate-popin">
             <span>PoemSite GitHub</span>
             <svg width="18" height="18" fill="none" viewBox="0 0 20 20" className="inline"><path stroke="currentColor" strokeWidth="2" d="M7 13l5-5m0 0V7a2 2 0 00-2-2H5.5A2.5 2.5 0 003 7.5v5A2.5 2.5 0 005.5 15h5a2 2 0 002-2v-1z"/></svg>
           </a>
-          <a href="https://admin.poems.toshankanwar.website/" target="_blank" rel="noopener" className="bg-white border-2 border-pink-500 text-pink-700 px-5 py-2 rounded-lg font-semibold shadow-lg hover:bg-pink-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 animate-popin">
+          <a href="https://admin.poems.toshankanwar.website/" target="_blank" rel="noopener" className="w-full xs:w-auto bg-white border-2 border-pink-500 text-pink-700 px-4 py-2 rounded-lg font-semibold shadow-lg hover:bg-pink-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 justify-center animate-popin">
             <span>Admin Dashboard</span>
             <svg width="18" height="18" fill="none" viewBox="0 0 20 20" className="inline"><path stroke="currentColor" strokeWidth="2" d="M7 13l5-5m0 0V7a2 2 0 00-2-2H5.5A2.5 2.5 0 003 7.5v5A2.5 2.5 0 005.5 15h5a2 2 0 002-2v-1z"/></svg>
           </a>
-          <a href="https://github.com/toshankanwar/admin-poetry-website" target="_blank" rel="noopener" className="bg-white border-2 border-purple-500 text-purple-700 px-5 py-2 rounded-lg font-semibold shadow-lg hover:bg-purple-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 animate-popin">
+          <a href="https://github.com/toshankanwar/admin-poetry-website" target="_blank" rel="noopener" className="w-full xs:w-auto bg-white border-2 border-purple-500 text-purple-700 px-4 py-2 rounded-lg font-semibold shadow-lg hover:bg-purple-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 justify-center animate-popin">
             <span>Admin Dashboard GitHub</span>
             <svg width="18" height="18" fill="none" viewBox="0 0 20 20" className="inline"><path stroke="currentColor" strokeWidth="2" d="M7 13l5-5m0 0V7a2 2 0 00-2-2H5.5A2.5 2.5 0 003 7.5v5A2.5 2.5 0 005.5 15h5a2 2 0 002-2v-1z"/></svg>
           </a>
-          <a href="https://github.com/toshankanwar/Mail-Server-Poetry-Website" target="_blank" rel="noopener" className="bg-white border-2 border-yellow-400 text-yellow-700 px-5 py-2 rounded-lg font-semibold shadow-lg hover:bg-yellow-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 animate-popin">
+          <a href="https://github.com/toshankanwar/Mail-Server-Poetry-Website" target="_blank" rel="noopener" className="w-full xs:w-auto bg-white border-2 border-yellow-400 text-yellow-700 px-4 py-2 rounded-lg font-semibold shadow-lg hover:bg-yellow-50 hover:scale-105 active:scale-100 transition-all duration-200 flex items-center gap-2 justify-center animate-popin">
             <span>Mail Server</span>
             <svg width="18" height="18" fill="none" viewBox="0 0 20 20" className="inline"><path stroke="currentColor" strokeWidth="2" d="M7 13l5-5m0 0V7a2 2 0 00-2-2H5.5A2.5 2.5 0 003 7.5v5A2.5 2.5 0 005.5 15h5a2 2 0 002-2v-1z"/></svg>
           </a>
@@ -34,25 +59,38 @@ export default function AboutPage() {
       </div>
 
       {/* Table of Contents */}
-      <div className="mb-12 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border-l-4 border-blue-400 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 animate-fadein-up">
-        <h2 className="text-2xl font-extrabold mb-2 text-blue-700">Table of Contents</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-blue-900">
-          <a href="#techstack" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Tech Stack</a>
-          <a href="#pages" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Pages & Navigation</a>
-          <a href="#mainfeatures" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Main Functionalities</a>
-          <a href="#code" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Code Explanations</a>
-          <a href="#security" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Security & Auth</a>
-          <a href="#data" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Collections & Data Models</a>
-          <a href="#admin" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Admin Dashboard</a>
-          <a href="#mailserver" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Mail Server</a>
-          <a href="#deployment" className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold">Deployment & Hosting</a>
+      <div className="mb-8 sm:mb-12 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border-l-4 border-blue-400 p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 animate-fadein-up">
+        <h2 className="text-xl sm:text-2xl font-extrabold mb-2 text-blue-700">Table of Contents</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-blue-900">
+          {[
+            { label: "Tech Stack", id: "techstack" },
+            { label: "Pages & Navigation", id: "pages" },
+            { label: "Main Functionalities", id: "mainfeatures" },
+            { label: "Code Explanations", id: "code" },
+            { label: "Security & Auth", id: "security" },
+            { label: "Collections & Data Models", id: "data" },
+            { label: "Admin Dashboard", id: "admin" },
+            { label: "Mail Server", id: "mailserver" },
+            { label: "Deployment & Hosting", id: "deployment" },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={e => handleTocClick(item.id, e)}
+              className="hover:scale-105 hover:bg-blue-100 rounded px-2 py-1 transition font-semibold block sm:inline text-left w-full sm:w-auto focus:outline-none focus:bg-blue-200"
+              style={{ cursor: 'pointer' }}
+              tabIndex={0}
+              aria-label={`Jump to ${item.label}`}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Tech Stack */}
-      <section id="techstack" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-blue-100 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 p-8 group hover:-translate-y-1">
-          <h2 className="text-2xl font-extrabold mb-3 text-blue-800 group-hover:text-blue-600 transition">Tech Stack</h2>
+      <section id="techstack" ref={sectionRefs.techstack} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-blue-100 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 p-5 sm:p-8 group hover:-translate-y-1">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-blue-800 group-hover:text-blue-600 transition">Tech Stack</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <ul className="list-disc pl-6">
               <li><b>Frontend:</b> Next.js 15, React, Tailwind CSS, HTML5, CSS3</li>
@@ -71,9 +109,9 @@ export default function AboutPage() {
       </section>
 
       {/* Pages & Navigation */}
-      <section id="pages" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-purple-100 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 p-8 group hover:-translate-y-1">
-          <h2 className="text-2xl font-extrabold mb-3 text-purple-800 group-hover:text-pink-700 transition">Pages & Navigation</h2>
+      <section id="pages" ref={sectionRefs.pages} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-purple-100 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 p-5 sm:p-8 group hover:-translate-y-1">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-purple-800 group-hover:text-pink-700 transition">Pages & Navigation</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-semibold text-gray-700 mb-2">Main User Site</h3>
@@ -103,9 +141,9 @@ export default function AboutPage() {
       </section>
 
       {/* Main Functionalities */}
-      <section id="mainfeatures" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-pink-100 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-pink-700 group-hover:text-blue-700 transition">Main Features & UX</h2>
+      <section id="mainfeatures" ref={sectionRefs.mainfeatures} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-pink-100 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-pink-700 group-hover:text-blue-700 transition">Main Features & UX</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <ul className="list-disc pl-6 text-gray-700">
               <li>Read, search, and share poems with beautiful, responsive UI</li>
@@ -128,13 +166,14 @@ export default function AboutPage() {
       </section>
 
       {/* Code Explanations */}
-      <section id="code" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-yellow-200 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-yellow-700 group-hover:text-blue-700 transition">Key Code Explanations</h2>
-          <div className="grid md:grid-cols-2 gap-7">
-            <div>
+      <section id="code" ref={sectionRefs.code} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        {/* Responsive: stack code blocks on mobile, grid on md+ */}
+        <div className="rounded-2xl border-2 border-yellow-200 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-yellow-700 group-hover:text-blue-700 transition">Key Code Explanations</h2>
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-7 w-full overflow-x-auto">
+            <div className="min-w-0">
               <h3 className="font-semibold text-gray-700 mb-2">Fetching a Poem</h3>
-              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2">{`
+              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2 max-w-full break-words">{`
 const poemQuery = query(
   collection(db, 'poems'),
   where('slug', '==', decodedSlug)
@@ -145,9 +184,9 @@ const poemData = snapshot.docs[0].data();
 setPoem(poemData);
               `.trim()}</pre>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold text-gray-700 mb-2">Posting a Comment</h3>
-              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2">{`
+              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2 max-w-full break-words">{`
 await addDoc(collection(db, 'comments'), {
   poemSlug: decodedSlug,
   content: newComment.trim(),
@@ -158,9 +197,9 @@ await addDoc(collection(db, 'comments'), {
 });
               `.trim()}</pre>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold text-gray-700 mb-2">On-demand Replies</h3>
-              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2">{`
+              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2 max-w-full break-words">{`
 const repliesQuery = query(
   collection(db, 'comments'),
   where('poemSlug', '==', decodedSlug),
@@ -171,9 +210,9 @@ const repliesSnapshot = await getDocs(repliesQuery);
 const replyData = repliesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
               `.trim()}</pre>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold text-gray-700 mb-2">Role-based Actions Example</h3>
-              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2">{`
+              <pre className="bg-gray-100 p-3 rounded overflow-x-auto text-sm mb-2 max-w-full break-words">{`
 {user?.uid === comment.userId && (
   <button onClick={() => handleDeleteComment(comment.id)}>
     Delete
@@ -186,9 +225,9 @@ const replyData = repliesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data()
       </section>
 
       {/* Security Rules & Authentication */}
-      <section id="security" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-blue-200 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-blue-800 group-hover:text-pink-700 transition">Security & Authentication</h2>
+      <section id="security" ref={sectionRefs.security} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-blue-200 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-blue-800 group-hover:text-pink-700 transition">Security & Authentication</h2>
           <p className="mb-2">
             <span className="font-bold text-blue-700">Strict Firestore rules</span> and authentication for both user and admin flows:
           </p>
@@ -217,9 +256,9 @@ match /comments/{commentId} {
       </section>
 
       {/* Data & Collections */}
-      <section id="data" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-purple-200 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-purple-800 group-hover:text-blue-700 transition">Collections & Data Models</h2>
+      <section id="data" ref={sectionRefs.data} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-purple-200 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-purple-800 group-hover:text-blue-700 transition">Collections & Data Models</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-semibold mb-1 text-gray-600">poems</h3>
@@ -272,9 +311,9 @@ match /comments/{commentId} {
       </section>
 
       {/* Admin Dashboard */}
-      <section id="admin" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-pink-200 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-pink-800 group-hover:text-purple-800 transition">Admin Dashboard <span className="text-xs font-normal ml-2">(separate app)</span></h2>
+      <section id="admin" ref={sectionRefs.admin} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-pink-200 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-pink-800 group-hover:text-purple-800 transition">Admin Dashboard <span className="text-xs font-normal ml-2">(separate app)</span></h2>
           <p className="mb-4 text-gray-700">
             The admin dashboard is a <b>dedicated Next.js app</b> built for moderators and admins, deployed at <a className="underline text-blue-700 hover:text-pink-600" href="https://admin.poems.toshankanwar.website/" target="_blank">admin.poems.toshankanwar.website</a>
           </p>
@@ -295,7 +334,7 @@ match /comments/{commentId} {
             </ul>
           </div>
           <div className="mt-3">
-            <a href="https://admin.poems.toshankanwar.website/" target="_blank" className="bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-200 inline-block mt-2">
+            <a href="https://admin.poems.toshankanwar.website/" target="_blank" className="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-200 inline-block mt-2 text-center">
               Visit Admin Dashboard ↗
             </a>
           </div>
@@ -303,9 +342,9 @@ match /comments/{commentId} {
       </section>
 
       {/* Mail Server */}
-      <section id="mailserver" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-yellow-300 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-yellow-700 group-hover:text-blue-700 transition">Mail Server & API</h2>
+      <section id="mailserver" ref={sectionRefs.mailserver} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-yellow-300 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-yellow-700 group-hover:text-blue-700 transition">Mail Server & API</h2>
           <p className="mb-3 text-gray-700">A dedicated backend service (Node.js + Express + Nodemailer) powers:</p>
           <ul className="list-disc pl-6 text-gray-700 mb-3">
             <li>Sending welcome emails, admin approval/announcement notifications</li>
@@ -325,9 +364,9 @@ app.post('/api/unsubscribe', ... );
       </section>
 
       {/* Deployment & Hosting */}
-      <section id="deployment" className="mb-12 animate-fadein-up">
-        <div className="rounded-2xl border-2 border-blue-300 shadow-xl bg-white hover:shadow-2xl p-8 group hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-extrabold mb-3 text-blue-700 group-hover:text-pink-700 transition">Deployment & Hosting</h2>
+      <section id="deployment" ref={sectionRefs.deployment} className="mb-8 sm:mb-12 animate-fadein-up scroll-mt-16" tabIndex={-1}>
+        <div className="rounded-2xl border-2 border-blue-300 shadow-xl bg-white hover:shadow-2xl p-5 sm:p-8 group hover:-translate-y-1 transition-all duration-300">
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-3 text-blue-700 group-hover:text-pink-700 transition">Deployment & Hosting</h2>
           <ul className="list-disc pl-6 text-gray-700 mb-3">
             <li>
               <b>Main Site:</b> Deployed on <span className="font-bold text-blue-700">Vercel</span> with auto CI/CD from GitHub.
@@ -352,18 +391,26 @@ app.post('/api/unsubscribe', ... );
       </section>
 
       {/* Footer */}
-      <div className="mt-16 text-center text-base text-gray-400 animate-fadein">
+      <div className="mt-12 sm:mt-16 text-center text-base text-gray-400 animate-fadein">
         &copy; {new Date().getFullYear()} <span className="font-semibold text-blue-800">PoemSite Project</span> &mdash; Built with Next.js, Firebase, Node.js, and <span className="text-pink-500">💜</span> by <a href="https://toshankanwar.website" target="_blank" className="underline text-blue-700 hover:text-pink-600">Toshan Kanwar</a>.
       </div>
 
       {/* Animations (can be extended via Tailwind plugin or CSS) */}
       <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
         .animate-fadein { animation: fadein 1.2s cubic-bezier(.47,1.64,.41,.8) both; }
         .animate-fadein-up { animation: fadeinup 1.1s cubic-bezier(.47,1.64,.41,.8) both; }
         .animate-popin { animation: popin 0.7s cubic-bezier(.47,1.64,.41,.8) both; }
         @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeinup { from { opacity: 0; transform: translateY(32px);} to { opacity: 1; transform: none; } }
         @keyframes popin { 0%{transform:scale(.7);opacity:0} 70%{transform:scale(1.07);opacity:1} 100%{transform:scale(1);opacity:1} }
+        @media (max-width: 640px) {
+          .max-w-5xl { max-width: 98vw !important; }
+          .overflow-x-auto { overflow-x: auto !important; }
+          .md\\:grid-cols-2 { grid-template-columns: 1fr !important; }
+        }
       `}</style>
     </div>
   );
