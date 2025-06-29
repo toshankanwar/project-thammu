@@ -92,7 +92,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-10">
             <Link href="/" className="flex items-center">
   <Image
-    src="/assets/poemsite-logo.png"
+    src="/assets/logo-thammu.png"
     alt="PoemSite Logo"
     width={150}
     height={150}
