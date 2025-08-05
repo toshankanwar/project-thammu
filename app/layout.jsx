@@ -71,6 +71,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* Next.js Head will not work in client component so use native tags */}
         <meta name="description" content="A beautiful poetry collection." />
+        <title>Thaneshwar Sahu</title>
         <meta property="og:site_name" content="Thaneshwar Sahu"/>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thaneshwarsahu.in" />
