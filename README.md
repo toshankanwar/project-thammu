@@ -2,7 +2,6 @@
 
 [![Vercel Deploy](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel&logoColor=white)](https://poems.toshankanwar.website/)
 [![Admin Dashboard](https://img.shields.io/badge/Admin%20Dashboard-Live-8B5CF6?logo=next.js&logoColor=white)](https://admin.poems.toshankanwar.website/)
-[![Mail Server API](https://img.shields.io/badge/Mail%20Server-API-blueviolet?logo=node.js&logoColor=white)](https://mail-server-poetry-website.onrender.com)
 [![License](https://img.shields.io/github/license/toshankanwar/poetry-website)](LICENSE)
 
 > **PoemSite** is a comprehensive poetry web platform designed for reading, sharing, and discussing poems. It features a user-centric interface, real-time comments, robust admin controls, mailing list, and a secure scalable backend. Built with Next.js 15, Firebase, and a custom Node.js mail server.
@@ -13,7 +12,6 @@
 
 - **Main Website:** [https://poems.toshankanwar.website/](https://poems.toshankanwar.website/)
 - **Admin Dashboard:** [https://admin.poems.toshankanwar.website/](https://admin.poems.toshankanwar.website/)
-- **API/Mail Server:** [https://mail-server-poetry-website.onrender.com](https://mail-server-poetry-website.onrender.com)
 - **Everything About Project (Docs):** [https://poems.toshankanwar.website/everything-about-project](https://poems.toshankanwar.website/everything-about-project)
 
 ---
